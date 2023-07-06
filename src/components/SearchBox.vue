@@ -41,7 +41,8 @@ defineProps({
 function filterDropdown() {
     _preventFilter(false);
     if (input.value) {
-        filterResource.value = resource.filter(item => _blurtSearch(item.value.toLowerCase(), input.value.toLowerCase()))
+        let input = input.value.toLowerCase();
+        filterResource.value = resource.filter(item => _blurSearch(item.value.toLowerCase(), input))
     } else {
         filterResource.value = [];
     }
@@ -57,7 +58,7 @@ function _preventFilter(state) {
     preventFilter.value = state;
 }
 
-function _blurtSearch(src, compare) {
+function _blurSearch(src, compare) {
     for (let i = 0; i < compare.length; i++) {
         let pos = src.indexOf(compare[i]);
         if (pos === -1) {
